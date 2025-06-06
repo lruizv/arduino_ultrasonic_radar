@@ -1,0 +1,55 @@
+# Licenceses & References
+
+## Ucglib_Arduino
+
+Color graphics library for embedded systems with focus on Arduino Environment (new library format).
+
+Supported display controller: ST7735, ILI9163, ILI9325, ILI9341, ILI9486,LD50T6160, PCF8833, SEPS225, SSD1331, SSD1351, HX8352C
+
+Features: Graphics primitives with 18 bit color depth, filled polygon draw, >300, landscape/portrait mode.
+
+See the [github wiki](https://github.com/olikraus/ucglib/wiki) for reference manual and tutorials.
+
+[![](https://api.bintray.com/packages/olikraus/Ucglib/Arduino/images/download.png)](https://bintray.com/olikraus/Ucglib/Arduino/_latestVersion)
+
+[//]: # ([Download Ucglib Arduino Library](https://github.com/olikraus/Ucglib_Arduino/releases/latest))
+
+[Download Ucglib Arduino Library](https://github.com/olikraus/Ucglib_Arduino/releases/latest)
+
+<a href='http://www.youtube.com/watch?feature=player_embedded&v=GSpYY0AMtEU' target='_blank'><img src='http://img.youtube.com/vi/GSpYY0AMtEU/0.jpg' width='425' height=344 /></a>
+
+name=Ucglib
+version=1.5.2
+author=oliver <olikraus@gmail.com>
+maintainer=oliver <olikraus@gmail.com>											
+sentence=True color TFT and OLED library, Up to 18 Bit color depth. Supported display controller: ST7735, ILI9163, ILI9325, ILI9341, ILI9486,LD50T6160, PCF8833, SEPS225, SSD1331, SSD1351, HX8352C. 
+paragraph=True color TFT and OLED library, Up to 18 Bit color depth. Supported display controller: ST7735, ILI9163, ILI9325, ILI9341, ILI9486,LD50T6160, PCF8833, SEPS225, SSD1331, SSD1351, HX8352C.
+category=Display
+url=https://github.com/olikraus/ucglib
+
+## Servo_Arduino
+
+:repository-owner: arduino-libraries
+:repository-name: Servo
+
+= {repository-name} Library for Arduino =
+
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml/badge.svg["Check Arduino status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml/badge.svg["Compile Examples status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml/badge.svg["Spell Check status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml"]
+
+This library allows an Arduino board to control RC (hobby) servo motors.
+
+For more information about this library please visit us at
+https://www.arduino.cc/reference/en/libraries/servo/
+
+name=Servo
+version=1.2.2
+author=Michael Margolis, Arduino
+maintainer=Arduino <info@arduino.cc>
+sentence=Allows Arduino boards to control a variety of servo motors.
+paragraph=This library can control a great number of servos.<br />It makes careful use of timers: the library can control 12 servos using only 1 timer.<br />On the Arduino Due you can control up to 60 servos.
+category=Device Control
+url=https://www.arduino.cc/reference/en/libraries/servo/
+architectures=avr,megaavr,sam,samd,nrf52,stm32f4,mbed,mbed_nano,mbed_portenta,mbed_rp2040,renesas,renesas_portenta,renesas_uno
+
