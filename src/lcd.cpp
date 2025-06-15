@@ -2,7 +2,16 @@
 
 // Forward declaration for cls
 void cls(Ucglib_ST7735_18x128x160_HWSPI *ucg);
+void lcd_setup(Ucglib_ST7735_18x128x160_HWSPI *ucg);
 
+/**
+ * Function Name:
+ *
+ * Description:
+ *
+ * @param void
+ * @return none
+ */
 void lcd_setup(Ucglib_ST7735_18x128x160_HWSPI *ucg)
 {
     ucg->begin(UCG_FONT_MODE_SOLID); //initialization screen
@@ -45,6 +54,14 @@ void lcd_setup(Ucglib_ST7735_18x128x160_HWSPI *ucg)
     ucg->setFontMode(UCG_FONT_MODE_SOLID);
 }
 
+/**
+ * Function Name:
+ *
+ * Description:
+ *
+ * @param void
+ * @return none
+ */
 void cls(Ucglib_ST7735_18x128x160_HWSPI *ucg)
 {
     //clear screen

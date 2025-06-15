@@ -15,10 +15,13 @@ Welcome! This guide will help you set up, build, and upload your Arduino Radar p
     We'll use PlatformIO, which integrates with VS Code.
 
 - **Arduino IDE** (optional, for board drivers)  
-  [Download Arduino IDE](https://www.arduino.cc/en/software)
+  [Download Arduino IDE (Windows/Linux/Mac)](https://www.arduino.cc/en/software)
 
 - **Install CH340 Driver** ( CH340 is a TTL (serial) to USB converter and vice versa.)  
-  [Download CH340 Driver](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_LINUX.ZIP)
+  [Download CH340 Driver Windows](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER.EXE)
+  [Download CH340 Driver Linux](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_LINUX.ZIP)
+  [Download CH340 Driver Mac](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_MAC.ZIP)
+  [More Info at "How to Install CH340 Drivers"](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
 ---
 
 ## Step 1: Install PlatformIO Extension
@@ -87,17 +90,31 @@ Welcome! This guide will help you set up, build, and upload your Arduino Radar p
 
 - Click the **plug icon (🔌)** in the status bar to open the Serial Monitor.
 
+Python Serial Plotter
+
+### Usage
+
+1. Verify the COM port and baud rate.
+2. Run the script. Execute: `python radar_serial_plot_grid.py`
+3. Click **Start** to begin plotting.
+4. Click **Stop** to halt data acquisition.
+
 ---
 
 ## Project Structure
 
 ```
 Ultrasonic_Radar/
-├── include/         # Header files
-├── lib/             # External libraries
-├── src/
-│   └── main.cpp     # Main code
-├── platformio.ini   # Project configuration
+├── Ultrasonic_Radar/
+│   ├── doc/
+│   │   └── pyacriptsdesign.md   # Detailed design document
+│   ├── script/
+│   │   └── radar_serial_plot_grid.py   # Python serial plotter script
+│   ├── include/         # Header files
+│   ├── lib/             # External libraries
+│   ├── src/
+│   │   └── main.cpp     # Main code
+│   ├── platformio.ini   # Project configuration
 ```
 
 ---

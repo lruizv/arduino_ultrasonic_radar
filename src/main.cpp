@@ -17,7 +17,14 @@ int scanline = 105;           //Radar scan line length
 Servo baseServo; 
 Ucglib_ST7735_18x128x160_HWSPI ucg(/*cd=*/ 9, /*cs=*/ 10, /*reset=*/ 8);
 
-
+/**
+ * Function Name:
+ *
+ * Description:
+ *
+ * @param void
+ * @return none
+ */
 void setup(void)
 {      
       pinMode(trigPin, OUTPUT);       //Set the trig Pin port mode
@@ -37,7 +44,14 @@ void setup(void)
 }    
 
 
-
+/**
+ * Function Name:
+ *
+ * Description:
+ *
+ * @param void
+ * @return none
+ */
 int calculateDistance()
 { 
       long duration;
@@ -54,6 +68,14 @@ int calculateDistance()
       return duration*0.034/2;
 }
 
+/**
+ * Function Name:
+ *
+ * Description:
+ *
+ * @param void
+ * @return none
+ */
 void fix_font() 
 {
       ucg.setColor(0, 180, 0);
@@ -67,6 +89,14 @@ void fix_font()
       ucg.print("25cm");
 }
 
+/**
+ * Function Name:
+ *
+ * Description:
+ *
+ * @param void
+ * @return none
+ */
 void fix()
 {
 
@@ -132,8 +162,14 @@ void fix()
        ucg.drawTetragon(72,123,68,127,88,127,92,123);
 }
 
-
-
+/**
+ * Function Name:
+ *
+ * Description:
+ *
+ * @param void
+ * @return none
+ */
 void loop(void)
 {
   
