@@ -15,6 +15,16 @@ pipeline {
                 echo 'Testing..'
             }
         }
+        stage('Merging into stable') {
+            when {
+                branch 'Development' 
+            }
+            steps {
+                echo 'Merging...'
+                sh '''git checkout Stable '''
+                sh '''git merge Development'''
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
