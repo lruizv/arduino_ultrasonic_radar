@@ -5,8 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh '''pio run
-                    '''
+                       sh '''pio account logout || true 
+                       PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run -r
+''' 
             }
         }
         stage('Test') {
@@ -17,7 +18,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh '''pio account logout || true 
+                PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run --environment uno --target upload'''
             }
         }
     }
+    environment {
+    MX_PLATFORMIO_AUTH_TOKEN = credentials('MX_PLATFORMIO_AUTH_TOKEN')
+  }
 }
