@@ -21,6 +21,7 @@ pipeline {
             }
             steps {
                 echo 'Merging...'
+                sh '''git fetch --all '''
                 sh '''git checkout Stable '''
                 sh '''git merge Development'''
             }
