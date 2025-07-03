@@ -24,7 +24,7 @@ pipeline {
                 withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
                     sh '''git fetch --all'''
                     sh '''git branch -v -a'''
-                    //sh '''git checkout origin/Stable'''
+                    sh '''git checkout -b Stable origin/Stable'''
                     //sh '''git merge origin/Development'''
                     //sh '''git push origin/Stable'''
                 }
