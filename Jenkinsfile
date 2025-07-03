@@ -22,6 +22,7 @@ pipeline {
             steps {
                 echo 'Merging...'
                 checkout scmGit(
+                    credentialsId: 'GIT_AUTH_TOKEN',
                     branches: [[name: 'Stable']],
                     userRemoteConfigs: [[url: 'https://github.com/lruizv/arduino_ultrasonic_radar.git']])
                 sh '''git merge origin/Development'''
