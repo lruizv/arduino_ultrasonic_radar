@@ -24,9 +24,9 @@ pipeline {
                 withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
                     sh '''git fetch --all'''
                     sh '''git rm --cached Jenkinsfile'''
-                    sh '''git checkout stable'''
-                    sh '''git merge origin/development -m "Merge from Jenkins pipeline into Stable"'''
-                    sh '''git push origin stable'''
+                    sh '''git checkout Stable'''
+                    sh '''git merge origin/Development -m "Merge from Jenkins pipeline into Stable"'''
+                    sh '''git push origin Stable'''
                 }
                 
             }
