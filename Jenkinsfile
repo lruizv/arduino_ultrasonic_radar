@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Merging branches from development'
                 withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
-                    sh '''git fetch origin'''
+                    sh '''git fetch --all'''
                     sh '''git checkout -b stable origin/stable'''
                     sh '''git merge origin/development -m "Merge from Jenkins pipeline into stable"'''
                     sh '''git push origin stable'''
