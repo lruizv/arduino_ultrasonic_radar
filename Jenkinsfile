@@ -17,13 +17,13 @@ pipeline {
         }
         stage('Merging into stable') {
             when {
-                branch 'Development' 
+                branch 'development' 
             }
             steps {
                 echo 'Merging...'
                 withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
-                    sh '''git fetch --all'''
-                    sh '''git checkout -f stable'''
+                    sh '''git fetch origin'''
+                    sh '''git checkout -b stable origin/stable'''
                     sh '''git merge origin/development -m "Merge from Jenkins pipeline into stable"'''
                     sh '''git push origin stable'''
                 }
