@@ -20,7 +20,7 @@ pipeline {
                 branch 'development' 
             }
             steps {
-                echo 'Merging...'
+                echo 'Merging branches'
                 withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
                     sh '''git fetch origin'''
                     sh '''git checkout -b stable origin/stable'''
