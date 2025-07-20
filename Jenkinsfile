@@ -23,9 +23,9 @@ pipeline {
                 echo 'Merging...'
                 withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
                     sh '''git fetch --all'''
-                    sh '''git checkout -f Stable'''
-                    sh '''git merge origin/Development -m "Merge from Jenkins pipeline into Stable"'''
-                    sh '''git push origin Stable'''
+                    sh '''git checkout -f stable'''
+                    sh '''git merge origin/development -m "Merge from Jenkins pipeline into stable"'''
+                    sh '''git push origin stable'''
                 }
                 
             }
