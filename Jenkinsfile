@@ -33,14 +33,16 @@ pipeline {
                     changelog: false,
                     url: 'https://github.com/lruizv/arduino_ultrasonic_radar.git'
                     sh '''git branch'''
+                    sh '''git merge origin/development -m "Merge from Jenkins pipeline into stable branch"'''
+                    sh '''git push origin stable'''
                 
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying..'
-                sh '''pio account logout || true 
-                PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run --environment uno --target upload'''
+                //sh '''pio account logout || true 
+                //PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run --environment uno --target upload'''
             }
         }
     }
