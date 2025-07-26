@@ -21,11 +21,16 @@ pipeline {
             }
             steps {
                 echo 'Merging branches from development'
-                withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
-                    sh '''git fetch --all'''
-                    sh '''git checkout -b stable origin/stable'''
-                    sh '''git merge origin/development -m "Merge from Jenkins pipeline into stable"'''
-                    sh '''git push origin stable'''
+                //withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
+                    //sh '''git fetch --all'''
+                    //sh '''git checkout -b stable origin/stable'''
+                    //sh '''git merge origin/development -m "Merge from Jenkins pipeline into stable"'''
+                    //sh '''git push origin stable'''
+                    git branch: 'stable',
+                    credentialsId: 'git_hub_credentials',
+                    changelog: false,
+                    url: 'https://github.com/lruizv/arduino_ultrasonic_radar.git'
+                    sh '''git branch'''
                 }
                 
             }
