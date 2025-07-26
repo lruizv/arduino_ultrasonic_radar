@@ -32,9 +32,9 @@ pipeline {
                     credentialsId: 'git_hub_credentials',
                     changelog: false,
                     url: 'https://github.com/lruizv/arduino_ultrasonic_radar.git'
-                    
+
                     sh '''git branch'''
-                    sh '''git merge origin/development -m "Merge from Jenkins pipeline into stable branch"'''
+                    sh '''git merge -x theirs origin/development -m "Merge from Jenkins pipeline into stable branch"'''
                     sh '''git push origin stable'''
                 
             }
