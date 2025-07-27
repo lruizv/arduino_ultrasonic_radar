@@ -21,14 +21,15 @@ pipeline {
             }
             steps {
                 echo 'Merging branches from development'
-                    sh '''git rm Jenkinsfile'''
-                    sh '''git rm Dockerfile'''
-                    sh '''git commit -m "removing jenkinsfile and docker file" '''
+                    
                   git branch: 'stable',
                     credentialsId: 'git_hub_credentials',
                     changelog: false,
                     url: 'https://github.com/lruizv/arduino_ultrasonic_radar.git'
                     sh '''git pull origin stable'''
+                    sh '''git rm Jenkinsfile'''
+                    sh '''git rm Dockerfile'''
+                    sh '''git commit -m "removing jenkinsfile and docker file" '''
                     sh '''git merge -s recursive -X theirs origin/development'''
                     sh '''git push origin stable'''
                 
