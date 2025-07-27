@@ -33,7 +33,7 @@ pipeline {
                     changelog: false,
                     url: 'https://github.com/lruizv/arduino_ultrasonic_radar.git'
                     sh '''git branch'''
-                    sh '''git merge -s recursive -X theirs development'''
+                    sh '''git merge -s recursive -X theirs origin/development'''
                     sh '''git push origin stable'''
                 
             }
