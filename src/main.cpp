@@ -4,6 +4,7 @@
 #include <lcd.h>
 
 //Ultrasonic radar distance measurement and servo steering gear control
+// Testing pipeline
 //This program is used to control the ultrasonic radar distance measurement and servo steering gear control, and display the distance value on the LCD screen.
 #define  trigPin   6          //Ultrasonic Module Trig->D6
 #define  echoPin   5          //Ultrasonic Module Echo->D5
