@@ -30,8 +30,9 @@ pipeline {
                     //sh '''git rm Jenkinsfile'''
                     //sh '''git rm Dockerfile'''
                     //sh '''git commit -m "removing jenkinsfile and docker file" '''
-                    withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {
                     sh '''git merge -s recursive -X theirs origin/development'''
+                    withCredentials([sshUserPrivateKey(credentialsId: "ssh_github_key", keyFileVariable: 'key')]) {
+                    sh 'GIT_SSH_COMMAND = "ssh -i $key"'
                     sh '''git push origin stable'''
                 }   
             }
