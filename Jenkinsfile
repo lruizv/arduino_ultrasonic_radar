@@ -31,10 +31,11 @@ pipeline {
                     //sh '''git rm Dockerfile'''
                     //sh '''git commit -m "removing jenkinsfile and docker file" '''
                     sh '''git merge -s recursive -X theirs origin/development'''
-                    withCredentials([sshUserPrivateKey(credentialsId: "ssh_github_key", keyFileVariable: 'key')]) {
+                    withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD', gitToolName: 'git-tool')]){
                     sh '''
-                            chmod 600 $key
-                            GIT_SSH_COMMAND="ssh -i $key -o StrictHostKeyChecking=no" git push origin stable
+                            git config --global user.name "${GIT_USERNAME}"
+                            git config --global user.password "${GIT_PASSWORD}"
+                            git push origin stable
                         '''
                 }   
             }
