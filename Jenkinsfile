@@ -32,8 +32,10 @@ pipeline {
                     //sh '''git commit -m "removing jenkinsfile and docker file" '''
                     sh '''git merge -s recursive -X theirs origin/development'''
                     withCredentials([sshUserPrivateKey(credentialsId: "ssh_github_key", keyFileVariable: 'key')]) {
-                    sh 'GIT_SSH_COMMAND = "ssh -i $key"'
-                    sh '''git push origin stable'''
+                    sh '''
+                            chmod 600 $key
+                            GIT_SSH_COMMAND="ssh -i $key -o StrictHostKeyChecking=no" git push origin stable
+                        '''
                 }   
             }
         }
