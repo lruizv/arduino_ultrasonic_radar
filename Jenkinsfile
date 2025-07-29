@@ -31,11 +31,9 @@ pipeline {
                     //sh '''git rm Dockerfile'''
                     //sh '''git commit -m "removing jenkinsfile and docker file" '''
                     sh '''git merge -s recursive -X theirs origin/development'''
-                    withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD', gitToolName: 'git-tool')]){
+                    withCredentials([sshUserPrivateKey(credentialsId: "ssh_github_key", keyFileVariable: 'key')]) {
                     sh '''
-                            git config --global user.name "${GIT_USERNAME}"
-                            git config --global user.password "${GIT_PASSWORD}"
-                            git push origin stable
+                            sh 'ssh-agent bash -c \'ssh-add ${key}; git push origin stable''
                         '''
                 }   
             }
