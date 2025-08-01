@@ -31,8 +31,10 @@ pipeline {
                     //sh '''git rm Dockerfile'''
                     //sh '''git commit -m "removing jenkinsfile and docker file" '''
                     sh '''git merge -s recursive -X theirs origin/development'''
-                    sh '''git push origin stable'''
-                
+                    withCredentials([sshUserPrivateKey(credentialsId: "ssh_github_key", keyFileVariable: 'key')]) {
+                    
+                    sh 'ssh-agent bash -c \'ssh-add ${key}; git push origin stable\''
+                }   
             }
         }
         stage('Deploy') {
