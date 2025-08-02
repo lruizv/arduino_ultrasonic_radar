@@ -5,8 +5,7 @@ pipeline {
             steps {
                 echo 'Building...'
                        sh '''pio account logout || true 
-                       PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run -r
-''' 
+                       PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run -r ''' 
             }
         }
         stage('Test') {
@@ -24,7 +23,7 @@ pipeline {
                 }
             }
         }
-        stage('Merging into stable') {
+        stage('Tagging stable') {
             when {
                 branch 'stable' 
             }
