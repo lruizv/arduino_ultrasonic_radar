@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo 'Tagging branch' 
                     withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {                   
-                    sh 'git tag {MX_PLATFORMIO_AUTH_TOKEN}$'
+                    sh 'git tag {CODE_VERSION}$'
                     gitPush(gitScm: scm, targetBranch: stable, targetRepo: 'origin')
                 }   
             }
