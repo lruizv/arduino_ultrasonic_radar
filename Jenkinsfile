@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    import java.text.SimpleDateFormat
     stages {
         stage('Build') {
             steps {
@@ -19,9 +19,9 @@ pipeline {
             steps {
                 script {
                     def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
-                    echo '''${date}'''
-                    env.CODE_VERSION = '''${env.CODE_VERSION}v-${date}''' // Combine date and build number
-                    echo '''Generated version: ${env.CODE_VERSION}'''
+                    echo "${date}"
+                    CODE_VERSION = "${CODE_VERSION}v-${date}" // Combine date and build number
+                    echo "Generated version: ${CODE_VERSION}"
                 }
             }
         }
@@ -31,8 +31,8 @@ pipeline {
             }
             steps {
                 echo 'Tagging branch' 
-                echo '''Generated version: ${env.CODE_VERSION}'''                 
-                    sh 'git tag {CODE_VERSION}$'
+                echo "Generated version: ${CODE_VERSION}"                
+                    sh 'git tag ${CODE_VERSION}'
                     gitPush(gitScm: scm, targetBranch: stable, targetRepo: 'origin')  
             }
         }
