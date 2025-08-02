@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    import java.text.SimpleDateFormat
     stages {
         stage('Build') {
             steps {
