@@ -19,7 +19,7 @@ pipeline {
                 script {
                     def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
                     echo "${date}"
-                    ${CODE_VERSION} = "${CODE_VERSION}v-${date}" // Combine date and build number
+                    CODE_VERSION = "${CODE_VERSION}v-${date}" // Combine date and build number
                     echo "Generated version: ${CODE_VERSION}"
                 }
             }
