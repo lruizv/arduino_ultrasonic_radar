@@ -19,8 +19,9 @@ pipeline {
             steps {
                 script {
                     def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
-                    env.CODE_VERSION = "v-${date}" // Combine date and build number
-                    echo "Generated version: ${env.CODE_VERSION}"
+                    echo '''${date}'''
+                    env.CODE_VERSION = '''${env.CODE_VERSION}v-${date}''' // Combine date and build number
+                    echo '''Generated version: ${env.CODE_VERSION}'''
                 }
             }
         }
@@ -30,10 +31,9 @@ pipeline {
             }
             steps {
                 echo 'Tagging branch' 
-                    withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {                   
+                echo '''Generated version: ${env.CODE_VERSION}'''                 
                     sh 'git tag {CODE_VERSION}$'
-                    gitPush(gitScm: scm, targetBranch: stable, targetRepo: 'origin')
-                }   
+                    gitPush(gitScm: scm, targetBranch: stable, targetRepo: 'origin')  
             }
         }
         stage('Deploy') {
