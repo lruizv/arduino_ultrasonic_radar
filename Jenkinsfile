@@ -17,23 +17,13 @@ pipeline {
         }
         stage('Merging into stable') {
             when {
-                branch 'development' 
+                branch 'stable' 
             }
             steps {
-                echo 'Merging branches from development'
-                    
-                  git branch: 'stable',
-                    credentialsId: 'git_hub_credentials',
-                    changelog: false,
-                    url: 'https://github.com/lruizv/arduino_ultrasonic_radar.git'
-                    //sh '''git pull origin stable'''
-                    //sh '''git rm Jenkinsfile'''
-                    //sh '''git rm Dockerfile'''
-                    //sh '''git commit -m "removing jenkinsfile and docker file" '''
-                    sh '''git merge -s recursive -X theirs origin/development'''
+                echo 'Tagging branch' 
                     withCredentials([sshUserPrivateKey(credentialsId: "ssh_github_key", keyFileVariable: 'key')]) {
                     
-                    sh 'ssh-agent bash -c \'ssh-add ${key}; git push origin stable\''
+                    sh 'git tag v0.1'
                 }   
             }
         }
