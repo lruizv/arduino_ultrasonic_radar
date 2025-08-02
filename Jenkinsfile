@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Tagging branch' 
                     withCredentials([sshUserPrivateKey(credentialsId: "ssh_github_key", keyFileVariable: 'key')]) {                   
-                    sh 'git tag v0.1'
+                    sh 'git tag v0.2'
                     sh 'git push origin --tags'
                 }   
             }
