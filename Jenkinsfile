@@ -15,15 +15,24 @@ pipeline {
                 echo 'Testing..'
             }
         }
+         stage('Generate Version') {
+            steps {
+                script {
+                    def date = new Date().format('yyyyMMdd') // Format the date as YYYYMMDD
+                    env.APP_VERSION = "v-${date}" // Combine date and build number
+                    echo "Generated version: ${env.APP_VERSION}"
+                }
+            }
+        }
         stage('Merging into stable') {
             when {
                 branch 'stable' 
             }
             steps {
                 echo 'Tagging branch' 
-                    withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {                   
-                    sh 'git tag v0.2'
-                    sh 'git push origin --tags'
+                    //withCredentials([gitUsernamePassword(credentialsId: 'git_hub_credentials', gitToolName: 'git-tool')]) {                   
+                    //sh 'git tag v0.2'
+                    //sh 'git push origin --tags'
                 }   
             }
         }
@@ -37,5 +46,6 @@ pipeline {
     }
     environment {
     MX_PLATFORMIO_AUTH_TOKEN = credentials('MX_PLATFORMIO_AUTH_TOKEN')
+    APP_VERSION = "jenkins_"
   }
 }
