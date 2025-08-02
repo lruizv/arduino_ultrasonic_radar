@@ -18,7 +18,7 @@ pipeline {
          stage('Generate Version') {
             steps {
                 script {
-                    def date = new Date().format('yyyyMMdd') // Format the date as YYYYMMDD
+                    def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
                     env.APP_VERSION = "v-${date}" // Combine date and build number
                     echo "Generated version: ${env.APP_VERSION}"
                 }
