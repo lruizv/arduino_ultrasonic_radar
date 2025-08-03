@@ -18,8 +18,8 @@ pipeline {
                 script {
                     def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
                     echo "${date}"
-                    CODE_VERSION = "${CODE_VERSION}v-${date}" // Combine date and build number
-                    echo "Generated version: ${CODE_VERSION}"
+                    TAG_VERSION = "${CODE_VERSION}v-${date}" // Combine date and build number
+                    echo "Generated version: ${TAG_VERSION}"
                 }
             }
         }
@@ -31,7 +31,8 @@ pipeline {
                 echo 'Tagging branch' 
                 echo "Generated version: ${CODE_VERSION}"                
                     sh '''git tag ${CODE_VERSION}'''
-                    sh '''git push --tags origin'''
+                    sshagent(credentials: ['github_ssh']) {
+                        sh '''git push origin --tags'''
             }
         }
         stage('Deploy') {
@@ -44,6 +45,6 @@ pipeline {
     }
     environment {
     MX_PLATFORMIO_AUTH_TOKEN = credentials('MX_PLATFORMIO_AUTH_TOKEN')
-    CODE_VERSION = "jenkins_"
+    CODE_VERSION = "jenkins_${TAG_VERSION}"
   }
 }
