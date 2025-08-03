@@ -30,11 +30,12 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'github_usr_pwd', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                             // Configure Git to use the credentials helper
                             sh 'git config --global credential.helper store'
+                            sh 'git config --global push.default simple'
                             sh 'git config user.email "leruizv@gmail.com"'
                             sh 'git config user.name "lruizv"'
                             //sh 'echo "https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/lruizv/arduino_ultrasonic_radar.git" > ~/.git-credentials' // Or your Git host                           
                             // Push tags
-                            sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/lruizv/arduino_ultrasonic_radar.git HEAD:main'
+                            sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/lruizv/arduino_ultrasonic_radar.git HEAD:stable'
                         } 
                     } 
             }
