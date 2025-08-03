@@ -27,7 +27,7 @@ pipeline {
                     }
                     sh '''git tag $TAG_VERSION'''
                    withCredentials([string(credentialsId: 'github_token', variable: 'TOKEN')]) {
-                        sh '''git config --global credential.helper '!f() {sleep 1; echo "username=git token=$TOKEN"; }; f' '''
+                        sh '''git remote set-url origin https://${TOKEN}@github.com/lruizv/arduino_ultrasonic_radar.git'''
                         sh '''git push origin --tags'''
                     }
             }
