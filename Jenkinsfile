@@ -30,8 +30,8 @@ pipeline {
             steps {
                 echo 'Tagging branch' 
                 echo "Generated version: ${CODE_VERSION}"                
-                    sh '''git tag v-0.3'''
-                    gitPush(gitScm: scm, targetBranch: 'stable', targetRepo: 'origin')  
+                    sh '''git tag ${CODE_VERSION}'''
+                    sh '''git push --tags origin'''
             }
         }
         stage('Deploy') {
