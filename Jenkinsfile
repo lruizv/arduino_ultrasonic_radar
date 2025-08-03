@@ -33,6 +33,7 @@ pipeline {
                     sh '''git tag ${CODE_VERSION}'''
                     sshagent(credentials: ['github_ssh']) {
                         sh '''git push origin --tags'''
+                        }
             }
         }
         stage('Deploy') {
