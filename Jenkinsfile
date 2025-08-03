@@ -29,8 +29,13 @@ pipeline {
             }
             steps {
                 echo 'Tagging branch' 
-                echo "Generated version: ${CODE_VERSION}"                
-                    sh '''git tag ${CODE_VERSION}'''
+                    script {
+                        def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
+                        echo "${date}"
+                        def TAG_VERSION = "jenkins-v-${date}" // Combine date and build number
+                        echo "Generated version: ${TAG_VERSION}"
+                    }
+                    sh '''git tag ${TAG_VERSION}'''
                     script {
                         withCredentials([usernamePassword(credentialsId: 'github_usr_pwd', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                             // Configure Git to use the credentials helper
@@ -52,7 +57,6 @@ pipeline {
     }
     environment {
     MX_PLATFORMIO_AUTH_TOKEN = credentials('MX_PLATFORMIO_AUTH_TOKEN')
-    TAG_VERSION = ""
-    CODE_VERSION = "jenkins_${TAG_VERSION}"
+    
   }
 }
