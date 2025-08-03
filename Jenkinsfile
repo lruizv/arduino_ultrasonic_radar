@@ -4,8 +4,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                       sh '''pio account logout || true 
-                       PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run -r ''' 
+                       //sh '''pio account logout || true 
+                       //PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run -r ''' 
             }
         }
         stage('Test') {
