@@ -4,8 +4,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                       sh '''pio account logout || true 
-                       PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run -r ''' 
+                       //sh '''pio account logout || true 
+                       //PLATFORMIO_AUTH_TOKEN=${MX_PLATFORMIO_AUTH_TOKEN} pio remote run -r ''' 
             }
         }
         stage('Test') {
@@ -25,19 +25,11 @@ pipeline {
                         def TAG_VERSION = "jenkins-v-${date}" // Combine date and build number
                         echo "Generated version: ${TAG_VERSION}"
                     }
-                    //sh '''git tag ${TAG_VERSION}'''
-                    script {
-                        withCredentials([usernamePassword(credentialsId: 'github_usr_pwd', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                            // Configure Git to use the credentials helper
-                            sh 'git config --global credential.helper store'
-                            sh 'git config --global push.default simple'
-                            sh 'git config user.email "leruizv@gmail.com"'
-                            sh 'git config user.name "lruizv"'
-                            //sh 'echo "https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/lruizv/arduino_ultrasonic_radar.git" > ~/.git-credentials' // Or your Git host                           
-                            // Push tags
-                            sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/lruizv/arduino_ultrasonic_radar.git HEAD:stable'
-                        } 
-                    } 
+                    sh '''git tag $TAG_VERSION'''
+                   withCredentials([string(credentialsId: 'github_token', variable: 'TOKEN')]) {
+                        sh '''git config --global credential.helper '!f() {sleep 1; echo "username=git token=$TOKEN"; }; f' '''
+                        sh '''git push origin --tags'''
+                    }
             }
         }
         stage('Deploy') {
