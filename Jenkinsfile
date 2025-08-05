@@ -1,3 +1,4 @@
+def TAG_VERSION
 pipeline {
     agent any
     stages {
@@ -43,7 +44,5 @@ pipeline {
     }
     environment {
     MX_PLATFORMIO_AUTH_TOKEN = credentials('MX_PLATFORMIO_AUTH_TOKEN')
-    TAG_VERSION = "_"
-    
   }
 }
