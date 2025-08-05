@@ -17,12 +17,12 @@ pipeline {
             when {
                 branch 'stable' 
             }
-            echo 'Tagging branch'
-            steps {               
+            steps {  
+                echo 'Tagging branch'            
                 script {
-                def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
-                def TAG_VERSION = "jenkins-v-${date}" // Combine date and build number
-                echo "Generated version: ${TAG_VERSION}" 
+                    def date = new Date().format('yyyy-MM-dd HH:mm:ss') // Format the date as yyyy-MM-dd HH:mm:ss
+                    def TAG_VERSION = "jenkins-v-${date}" // Combine date and build number
+                    echo "Generated version: ${TAG_VERSION}" 
                 }
                 sh 'echo ${TAG_VERSION}'
                 /*sh '''git tag ${TAG_VERSION}'''
