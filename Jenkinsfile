@@ -26,7 +26,7 @@ pipeline {
                     echo "Generated version: ${TAG_VERSION}" 
                 }
                 echo "Generated version: ${TAG_VERSION}" 
-                sh '''echo ${TAG_VERSION}'''
+                sh "echo ${TAG_VERSION}"
                 /*sh '''git tag ${TAG_VERSION}'''
                    withCredentials([string(credentialsId: 'github_token', variable: 'TOKEN')]) {
                         sh '''git remote set-url origin https://${TOKEN}@github.com/lruizv/arduino_ultrasonic_radar.git'''
