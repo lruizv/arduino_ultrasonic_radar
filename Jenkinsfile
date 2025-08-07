@@ -21,7 +21,7 @@ pipeline {
             steps {  
                 echo 'Tagging branch'            
                 script {
-                    def date = new Date().format("yyyy-MM-dd'T'HH:mm:ss.SSSXXX") // Format the date as yyyy-MM-dd HH:mm:ss
+                    def date = new Date().format("yyyy-MM-dd'T'HHmm") // Format the date as yyyy-MM-dd HH:mm:ss
                     TAG_VERSION = "jenkins-v-${date}" // Combine date and build number
                     echo "Generated version: ${TAG_VERSION}" 
                 }
